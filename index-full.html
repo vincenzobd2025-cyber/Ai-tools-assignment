@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lumen — Learn to See Light Like a Photographer</title>
+<style>
+  :root{
+    --ink:#2b2420;
+    --paper:#fff6ec;
+    --line:#e8c9a0;
+    --accent:#d1622b;
+    --accent-soft:#fce4cc;
+    --card:#ffffff;
+    --mono:'Courier New', monospace;
+    --display:'Trebuchet MS', 'Verdana', sans-serif;
+    --body:'Verdana', 'Tahoma', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    font-size:16px;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 28px;}
+
+  /* Header */
+  header{
+    background:var(--card);
+    border-bottom:3px dashed var(--line);
+    padding:22px 0;
+  }
+  header .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:var(--display); font-weight:700; font-size:24px;}
+  .logo span{color:var(--accent);}
+  nav a{
+    margin-left:24px; font-size:14px; font-weight:bold;
+    padding:8px 16px; border:2px solid var(--ink); border-radius:20px;
+  }
+  nav a:hover{background:var(--accent); color:#fff; border-color:var(--accent);}
+
+  /* Hero */
+  .hero{padding:80px 0 60px; text-align:center;}
+  .eyebrow{
+    display:inline-block; font-family:var(--mono); font-size:13px;
+    background:var(--accent-soft); color:var(--accent); padding:6px 16px;
+    border-radius:30px; margin-bottom:20px; border:1px dotted var(--accent);
+  }
+  h1{
+    font-family:var(--display); font-size:clamp(30px,6vw,52px);
+    line-height:1.15; max-width:760px; margin:0 auto; font-weight:700;
+  }
+  .hero p{
+    max-width:520px; margin:22px auto 0; font-size:17px; color:#5c5148;
+  }
+  .btn-row{margin-top:32px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; padding:14px 28px; font-size:15px; font-weight:bold;
+    border-radius:30px; border:3px solid var(--ink);
+  }
+  .btn-primary{background:var(--accent); color:#fff; border-color:var(--accent);}
+  .btn-primary:hover{background:#b4501f;}
+  .btn-secondary{background:var(--card); color:var(--ink);}
+  .btn-secondary:hover{background:var(--accent-soft);}
+
+  /* Sections */
+  .section{padding:64px 0;}
+  .section-head{max-width:560px; margin:0 auto 40px; text-align:center;}
+  .section-head h2{font-family:var(--display); font-size:30px; margin-bottom:10px;}
+  .section-head p{color:#5c5148; font-size:15px;}
+
+  .tracks{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .card{
+    background:var(--card); border:3px solid var(--ink); border-radius:18px;
+    overflow:hidden; box-shadow:6px 6px 0 var(--line);
+  }
+  .card img{width:100%; height:150px; object-fit:cover; border-bottom:3px solid var(--ink);}
+  .card-body{padding:20px;}
+  .card .tag{
+    font-family:var(--mono); font-size:11px; text-transform:uppercase;
+    color:var(--accent); margin-bottom:10px; display:inline-block;
+    border:1px solid var(--accent); padding:2px 8px; border-radius:10px;
+  }
+  .card h3{font-family:var(--display); font-size:19px; margin-bottom:8px;}
+  .card p{font-size:14px; color:#5c5148; margin-bottom:18px;}
+  .card-foot{display:flex; align-items:center; justify-content:space-between;}
+  .price{font-family:var(--mono); font-weight:bold; font-size:16px; color:var(--accent);}
+  .enroll{
+    font-size:13px; font-weight:bold; background:var(--ink); color:#fff;
+    padding:6px 14px; border-radius:16px;
+  }
+
+  /* Approach */
+  .approach{
+    display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:start;
+    background:var(--card); border:3px solid var(--ink); border-radius:22px;
+    padding:44px; box-shadow:8px 8px 0 var(--line);
+  }
+  .approach > p{font-size:16px; color:#5c5148; max-width:440px;}
+  .steps{display:flex; flex-direction:column; gap:24px;}
+  .step{display:flex; gap:16px;}
+  .step .num{
+    font-family:var(--mono); color:#fff; background:var(--accent);
+    font-size:13px; font-weight:bold; width:28px; height:28px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .step h4{font-family:var(--display); font-size:18px; margin-bottom:4px;}
+  .step p{font-size:14px; color:#5c5148;}
+
+  /* Stats */
+  .stats{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:20px;
+  }
+  .stat{
+    text-align:center; background:var(--accent-soft); border:2px dashed var(--accent);
+    border-radius:16px; padding:24px 12px;
+  }
+  .stat .num{font-family:var(--display); font-size:34px; color:var(--accent); font-weight:bold;}
+  .stat .label{font-size:13px; color:#5c5148; margin-top:6px;}
+
+  /* Testimonials */
+  .testimonials{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .quote{
+    background:var(--card); border:3px solid var(--ink); border-radius:16px;
+    padding:24px; box-shadow:5px 5px 0 var(--line);
+  }
+  .quote p{font-size:15px; line-height:1.6; margin-bottom:14px; font-style:italic;}
+  .quote .who{font-size:13px; color:#5c5148;}
+  .quote .who b{color:var(--accent); font-weight:bold;}
+
+  /* Video */
+  .video-box{
+    border:3px solid var(--ink); border-radius:18px; overflow:hidden;
+    background:#111;
+  }
+
+  footer{
+    padding:36px 0; text-align:center; font-size:13px; color:#8a7c6d;
+    border-top:3px dashed var(--line); margin-top:20px;
+  }
+
+  @media (max-width:760px){
+    .tracks, .approach, .testimonials{grid-template-columns:1fr;}
+    .stats{grid-template-columns:repeat(2,1fr); row-gap:16px;}
+    nav{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">lumen<span>.</span></div>
+    <nav>
+      <a href="#tracks">Workshops</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#reviews">Stories</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Photography, taught by people who still shoot every day</div>
+    <h1>Stop taking pictures. Start seeing light.</h1>
+    <p>A hands-on mentorship for photographers who are done watching tutorials and ready to actually shoot — with feedback on your own frames, every week.</p>
+    <div class="btn-row">
+      <a href="/workshops" class="btn btn-primary">See the Workshops</a>
+      <a href="/pricing" class="btn btn-secondary">Check Pricing</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tracks">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Pick your obsession</h2>
+      <p>Every workshop is built around one skill, taught until it actually sticks.</p>
+    </div>
+    <div class="tracks">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600&h=400&fit=crop" alt="Natural light portraits">
+        <div class="card-body">
+          <span class="tag">Portraits</span>
+          <h3>Chasing Natural Light</h3>
+          <p>Read a room's light in seconds and pose people so it flatters them, not the camera.</p>
+          <div class="card-foot">
+            <span class="price">$59</span>
+            <a href="/workshops" class="enroll">Join →</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1533630654593-b301e0710d81?w=600&h=400&fit=crop" alt="Street photography">
+        <div class="card-body">
+          <span class="tag">Street</span>
+          <h3>Shooting Strangers Bravely</h3>
+          <p>Build the instinct — and the nerve — to catch real moments in public spaces.</p>
+          <div class="card-foot">
+            <span class="price">$39</span>
+            <a href="/workshops" class="enroll">Join →</a>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&h=400&fit=crop" alt="Editing and color grading">
+        <div class="card-body">
+          <span class="tag">Editing</span>
+          <h3>Color Grading Lab</h3>
+          <p>Develop a signature look in Lightroom that you can repeat, not one-off luck.</p>
+          <div class="card-foot">
+            <span class="price">$45</span>
+            <a href="/workshops" class="enroll">Join →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap approach">
+    <div>
+      <h2 style="font-family:var(--display); font-size:26px; margin-bottom:14px;">We won't teach you another camera menu.</h2>
+      <p>Gear settings get old fast. What doesn't get old is knowing exactly where to stand and when to press the shutter. That's the whole curriculum, really.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="num">1</span>
+        <div>
+          <h4>Shoot weekly assignments</h4>
+          <p>Real briefs, real deadlines, real feedback — not busywork.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="num">2</span>
+        <div>
+          <h4>Get roasted (kindly)</h4>
+          <p>Working pros pick apart your frames so you improve fast.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap stats">
+    <div class="stat"><div class="num">6,200+</div><div class="label">photographers trained</div></div>
+    <div class="stat"><div class="num">92%</div><div class="label">still shooting a year later</div></div>
+    <div class="stat"><div class="num">180</div><div class="label">live critique sessions</div></div>
+    <div class="stat"><div class="num">4.8★</div><div class="label">average rating</div></div>
+  </div>
+</section>
+
+<section class="section" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>People who showed up and shot</h2>
+    </div>
+    <div class="testimonials">
+      <div class="quote">
+        <p>"I used to just spray and pray. Now I actually wait for the light. Wild difference in six weeks."</p>
+        <div class="who"><b>Maya Ilić</b> — wedding shooter, second season</div>
+      </div>
+      <div class="quote">
+        <p>"The street photography module cured my fear of strangers looking back at me. Genuinely."</p>
+        <div class="who"><b>Kofi Boateng</b> — hobbyist, ex-accountant</div>
+      </div>
+      <div class="quote">
+        <p>"My editing finally looks like mine and not a preset pack. Worth it for that alone."</p>
+        <div class="who"><b>Renata Alves</b> — freelance photographer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-bottom:20px;">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Peek inside a real session</h2>
+      <p>Four minutes of an actual critique call — no highlight reel, just the real thing.</p>
+    </div>
+    <video class="video-box" controls style="width:100%; aspect-ratio:16/9;">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      Your browser doesn't support embedded video.
+    </video>
+  </div>
+</section>
+
+<footer>
+  © 2026 Lumen. Made by photographers, for photographers.
+</footer>
+
+</body>
+</html>
